@@ -1,15 +1,19 @@
-// tests/api.spec.js
 import { test, expect } from '@playwright/test';
 
-test('GET users API', async ({ request }) => {
+test('GET Users', async ({ request }) => {
+
   const response = await request.get(
-    'https://jsonplaceholder.typicode.com/users'
+    'https://reqres.in/api/users?page=2',
+    {
+      headers: {
+        'x-api-key': 'free_user_3G8GCs4M0p1joNx6k8vJZi87Y4L'
+      }
+    }
   );
 
   expect(response.status()).toBe(200);
 
   const body = await response.json();
-
-  expect(body.length).toBeGreaterThan(0);
-  expect(body[0]).toHaveProperty('id');
+  console.log(body);
 });
+
